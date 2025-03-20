@@ -2,7 +2,7 @@
 # Virtual environment
 .venv/
 node_modules/
-
+.env
 # Python cache files
 __pycache__/
 # *.pyc
