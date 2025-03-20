@@ -1,0 +1,42 @@
+E-commerce Dashboard Project
+├── .venv/                    # Virtual environment (project dependencies)
+├── migrations/               # Database migration files (Flask-Migrate)
+├── ecommerce/                # Main application package
+│   ├── __init__.py         # Initializes the Flask app, registers blueprints, etc.
+│   ├── config.py           # Configuration settings (secret key, database URI, etc.)
+│   ├── db_config.py        # Database connection logic (SQLAlchemy setup)
+│   ├── models.py           # Database models (User, Product, Order, etc.)
+│   ├── routes/             # API endpoints organized by functionality
+│   │   ├── __init__.py     # Blueprint initialization for routes
+│   │   ├── auth_routes.py  # Authentication endpoints (register, login, etc.)
+│   │   ├── product_routes.py  # Product management endpoints (CRUD for products)
+│   │   └── order_routes.py    # Order management endpoints (order processing, tracking)
+│   ├── services/           # Business logic (optional, for complex operations)
+│   └── utils/              # Utility functions and helpers (optional)
+├── app.py                    # Entry point for running the Flask application
+├── requirements.txt          # Project dependencies
+├── .env                      # Environment variables (sensitive credentials, etc.)
+└── README.md                 # Project documentation
+
+
+
+Endpoints
+Authentication:
+   POST /auth/register  --> Registers a new user
+   POST /auth/login     --> Authenticates and returns a token
+   POST /auth/logout    --> Logs out the user (revokes token)
+   POST /auth/refresh   --> Refreshes the authentication token
+
+Product Management:
+   GET /products        --> Lists all products
+   GET /products/{id}   --> Retrieves details for a product
+   POST /products       --> Adds a new product (admin only)
+   PUT /products/{id}   --> Updates product information (admin only)
+   DELETE /products/{id}--> Deletes a product (admin only)
+
+Order Management:
+   GET /orders          --> Lists all orders
+   GET /orders/{id}     --> Retrieves order details
+   POST /orders         --> Creates a new order
+   PUT /orders/{id}     --> Updates order status
+   DELETE /orders/{id}  --> Cancels an order
