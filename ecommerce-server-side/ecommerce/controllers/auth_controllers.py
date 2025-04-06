@@ -1,6 +1,7 @@
 # from urllib import request
 from venv import logger
-from flask import app, Blueprint, jsonify, request ,json
+from flask import  Blueprint, request 
+
 
 from ecommerce.services.auth_service import UserAuthenticationService
 
@@ -11,10 +12,11 @@ class UserAuthenticationController:
     @blp_auth.post("/login")
     def login():
         req=request.json
-        userName=req.user_name
-        password=req.password
-        return UserAuthenticationService.user_login(userName,password)
-        # pass
+        userName=req["user_name"]
+        email_id=req["email_id"]
+        password=req["password"]
+        return UserAuthenticationService.user_login(userName,email_id,password)
+
     
     @blp_auth.post("/register")
     def register_user():
@@ -28,18 +30,17 @@ class UserAuthenticationController:
         mobile_number=req["mobile_num"]
         password=req["password"]
         print('Here')
-        # return jsonify({"message": "User registered successfully!"}), 201
         
         return UserAuthenticationService.register_user(userName,first_name,middle_name,last_name,password,email_id,mobile_number)
         
+        
+    @blp_auth.get("/logout")
+    def user_logout():
+        return UserAuthenticationService.user_logout()
     
-    @blp_auth.post("/logout")
-    def register():
-        pass
-    
-    @blp_auth.post("/refresh")
-    def refresh():
-        pass
+    # @blp_auth.post("/refresh")
+    # def refresh():
+    #     pass
     
     
     
